@@ -1,0 +1,224 @@
+---
+import Layout from "../layouts/Layout.astro";
+import FadeIn from "../components/react/FadeIn";
+import { siteConfig } from "../data/site";
+---
+
+<Layout title="Home">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-content">
+      <FadeIn client:load>
+        <img src="/images/logo.jpg" alt="UT BSA Logo" class="hero-logo" />
+      </FadeIn>
+      <FadeIn client:load delay={0.15}>
+        <h1>
+          <span class="text-blue">Bangladeshi</span><br />
+          Student Association
+        </h1>
+      </FadeIn>
+      <FadeIn client:load delay={0.25}>
+        <p class="hero-university">University of Toledo</p>
+      </FadeIn>
+      <FadeIn client:load delay={0.35}>
+        <p class="hero-description">
+          {siteConfig.description}
+        </p>
+      </FadeIn>
+      <FadeIn client:load delay={0.45}>
+        <div class="hero-actions">
+          <a href="/join" class="btn btn-primary">Join BSA</a>
+          <a href="/events" class="btn btn-outline">View Events</a>
+        </div>
+      </FadeIn>
+    </div>
+    <div class="hero-accent"></div>
+  </section>
+
+  <!-- Mission Section -->
+  <section class="section mission-section">
+    <div class="container">
+      <FadeIn client:load>
+        <div class="section-header">
+          <h2>Our <span class="accent">Mission</span></h2>
+        </div>
+      </FadeIn>
+      <div class="mission-grid">
+        <FadeIn client:load delay={0.1}>
+          <div class="card mission-card">
+            <div class="mission-icon-wrap">
+              <div class="mission-icon">🤝</div>
+            </div>
+            <h3>Community</h3>
+            <p>Creating a supportive family for Bangladeshi students at UToledo, far from home but never alone.</p>
+          </div>
+        </FadeIn>
+        <FadeIn client:load delay={0.2}>
+          <div class="card mission-card">
+            <div class="mission-icon-wrap">
+              <div class="mission-icon">🎭</div>
+            </div>
+            <h3>Culture</h3>
+            <p>Celebrating and sharing the rich traditions, food, music, and heritage of Bangladesh with the campus.</p>
+          </div>
+        </FadeIn>
+        <FadeIn client:load delay={0.3}>
+          <div class="card mission-card">
+            <div class="mission-icon-wrap">
+              <div class="mission-icon">🚀</div>
+            </div>
+            <h3>Growth</h3>
+            <p>Empowering members through professional development, mentorship, and leadership opportunities.</p>
+          </div>
+        </FadeIn>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <FadeIn client:load>
+        <div class="cta-content">
+          <h2>Ready to Join Us?</h2>
+          <p>Whether you're from Bangladesh or just curious about our culture, BSA welcomes everyone.</p>
+          <a href="/join" class="btn btn-gold">Become a Member</a>
+        </div>
+      </FadeIn>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding-top: var(--nav-height);
+    background: var(--white);
+    overflow: hidden;
+  }
+
+  .hero-accent {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--blue), var(--gold));
+  }
+
+  .hero-content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    padding: 4rem 2rem;
+  }
+
+  .hero-logo {
+    width: 180px;
+    height: auto;
+    margin: 0 auto 2.5rem;
+    border-radius: 12px;
+  }
+
+  .hero h1 {
+    margin-bottom: 0.75rem;
+    color: var(--black);
+  }
+
+  .hero-university {
+    font-size: 1.1rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+    color: var(--gray-500) !important;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-description {
+    max-width: 520px;
+    margin: 0 auto 2.5rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Mission */
+  .mission-section {
+    background: var(--off-white);
+  }
+
+  .mission-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .mission-card {
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+
+  .mission-icon-wrap {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 62, 126, 0.06);
+    border-radius: 14px;
+  }
+
+  .mission-icon {
+    font-size: 1.75rem;
+  }
+
+  .mission-card h3 {
+    color: var(--blue);
+    margin-bottom: 0.75rem;
+  }
+
+  /* CTA */
+  .cta-section {
+    padding: 6rem 2rem;
+    background: var(--blue);
+  }
+
+  .cta-content {
+    text-align: center;
+  }
+
+  .cta-content h2 {
+    color: white;
+    margin-bottom: 1rem;
+  }
+
+  .cta-content p {
+    color: rgba(255, 255, 255, 0.75);
+    max-width: 480px;
+    margin: 0 auto 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .mission-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-logo {
+      width: 140px;
+    }
+
+    .cta-section {
+      padding: 4rem 1.25rem;
+    }
+  }
+</style>

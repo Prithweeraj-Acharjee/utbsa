@@ -1,0 +1,254 @@
+---
+import Layout from "../layouts/Layout.astro";
+import FadeIn from "../components/react/FadeIn";
+import { upcomingEvents, pastEvents } from "../data/site";
+---
+
+<Layout title="Events" description="BSA events at the University of Toledo — past and upcoming">
+  <section class="page-hero">
+    <div class="container">
+      <FadeIn client:load>
+        <p class="page-label">What's Happening</p>
+        <h1>BSA <span class="text-blue">Events</span></h1>
+        <p class="page-subtitle">From cultural nights to welcome orientations — see what BSA has been up to and what's coming next.</p>
+      </FadeIn>
+    </div>
+  </section>
+
+  <!-- Upcoming Events -->
+  {upcomingEvents.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <FadeIn client:load>
+          <div class="section-header">
+            <h2>Upcoming <span class="accent">Events</span></h2>
+          </div>
+        </FadeIn>
+        <div class="upcoming-grid">
+          {upcomingEvents.map((event, i) => (
+            <FadeIn client:load delay={i * 0.1}>
+              <div class="card event-card-upcoming">
+                <span class="event-category">{event.category}</span>
+                <h3>{event.title}</h3>
+                <div class="event-meta">
+                  <div class="event-detail">
+                    <span class="event-icon">📅</span>
+                    <span>{event.date}</span>
+                  </div>
+                  <div class="event-detail">
+                    <span class="event-icon">🕐</span>
+                    <span>{event.time}</span>
+                  </div>
+                  <div class="event-detail">
+                    <span class="event-icon">📍</span>
+                    <span>{event.location}</span>
+                  </div>
+                </div>
+                <p class="event-description">{event.description}</p>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Past Events -->
+  <section class="section past-section">
+    <div class="container">
+      <FadeIn client:load>
+        <div class="section-header">
+          <h2>Past <span class="accent">Events</span></h2>
+          <p>A look back at the moments that brought our community together.</p>
+        </div>
+      </FadeIn>
+      <div class="past-grid">
+        {pastEvents.map((event, i) => (
+          <FadeIn client:load delay={i * 0.1}>
+            <div class="card past-card">
+              <div class="past-image">
+                <img src={event.image} alt={event.title} />
+                <div class="past-overlay">
+                  <span class="event-category">{event.category}</span>
+                </div>
+              </div>
+              <div class="past-info">
+                <div class="past-header">
+                  <h3>{event.title}</h3>
+                  <span class="past-date">{event.date}</span>
+                </div>
+                <p>{event.description}</p>
+              </div>
+            </div>
+          </FadeIn>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    padding: calc(var(--nav-height) + 4rem) 2rem 2rem;
+    text-align: center;
+    background: var(--off-white);
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .page-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gold-dark);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .page-hero h1 {
+    margin-bottom: 0.75rem;
+  }
+
+  .page-subtitle {
+    max-width: 540px;
+    margin: 0 auto;
+  }
+
+  /* Upcoming */
+  .upcoming-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+    gap: 2rem;
+  }
+
+  .event-card-upcoming {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .event-category {
+    display: inline-block;
+    width: fit-content;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.25rem 0.7rem;
+    border-radius: 50px;
+    color: var(--blue);
+    background: rgba(0, 62, 126, 0.08);
+    border: 1px solid rgba(0, 62, 126, 0.12);
+  }
+
+  .event-card-upcoming h3 {
+    font-size: 1.2rem;
+  }
+
+  .event-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .event-detail {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+  }
+
+  .event-icon {
+    font-size: 0.9rem;
+    width: 18px;
+    text-align: center;
+  }
+
+  .event-description {
+    font-size: 0.9rem !important;
+    line-height: 1.6;
+    border-top: 1px solid var(--gray-200);
+    padding-top: 0.75rem;
+    margin-top: 0.25rem;
+  }
+
+  /* Past Events */
+  .past-section {
+    background: var(--off-white);
+  }
+
+  .past-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr));
+    gap: 2rem;
+  }
+
+  .past-card {
+    overflow: hidden;
+  }
+
+  .past-image {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+  }
+
+  .past-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-base);
+  }
+
+  .past-card:hover .past-image img {
+    transform: scale(1.03);
+  }
+
+  .past-overlay {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+  }
+
+  .past-overlay .event-category {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
+  }
+
+  .past-info {
+    padding: 1.5rem;
+  }
+
+  .past-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .past-header h3 {
+    font-size: 1.15rem;
+  }
+
+  .past-date {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    font-weight: 500;
+    margin-top: 0.15rem;
+  }
+
+  .past-info p {
+    font-size: 0.88rem !important;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .upcoming-grid,
+    .past-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

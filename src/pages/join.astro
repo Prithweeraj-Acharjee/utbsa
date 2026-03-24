@@ -1,0 +1,339 @@
+---
+import Layout from "../layouts/Layout.astro";
+import FadeIn from "../components/react/FadeIn";
+import { siteConfig } from "../data/site";
+---
+
+<Layout title="Join BSA" description="Join the Bangladeshi Student Association at UToledo">
+  <section class="page-hero">
+    <div class="container">
+      <FadeIn client:load>
+        <p class="page-label">Get Involved</p>
+        <h1>Join <span class="text-blue">BSA</span></h1>
+        <p class="page-subtitle">Whether you're from Bangladesh or just want to learn about our culture, BSA welcomes everyone.</p>
+      </FadeIn>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="join-grid">
+        <FadeIn client:load>
+          <div class="card form-card">
+            <h3>Interest Form</h3>
+            <p class="form-subtitle">Fill out the form below and we'll add you to our list.</p>
+            <form class="join-form" id="join-form">
+              <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Your full name" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="your.email@rockets.utoledo.edu" required />
+              </div>
+              <div class="form-group">
+                <label for="major">Major</label>
+                <input type="text" id="major" name="major" placeholder="e.g. Computer Science" />
+              </div>
+              <div class="form-group">
+                <label for="year">Year</label>
+                <select id="year" name="year">
+                  <option value="">Select year</option>
+                  <option>Freshman</option>
+                  <option>Sophomore</option>
+                  <option>Junior</option>
+                  <option>Senior</option>
+                  <option>Graduate</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="message">Why do you want to join BSA?</label>
+                <textarea id="message" name="message" rows="3" placeholder="Tell us a bit about yourself..."></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary form-submit">Submit</button>
+            </form>
+            <div class="form-success" id="form-success">
+              <div class="success-icon">✓</div>
+              <h3>Welcome to BSA!</h3>
+              <p>We've received your info. A board member will reach out soon.</p>
+            </div>
+          </div>
+        </FadeIn>
+
+        <div class="join-info">
+          <FadeIn client:load delay={0.1}>
+            <div class="card info-card">
+              <h4>Why Join BSA?</h4>
+              <ul class="benefits-list">
+                <li>
+                  <span class="benefit-icon">🌍</span>
+                  <div>
+                    <strong>Cultural Connection</strong>
+                    <p>Stay connected to Bangladeshi traditions and festivals.</p>
+                  </div>
+                </li>
+                <li>
+                  <span class="benefit-icon">👥</span>
+                  <div>
+                    <strong>Community & Support</strong>
+                    <p>Find friends, mentors, and a support system on campus.</p>
+                  </div>
+                </li>
+                <li>
+                  <span class="benefit-icon">💼</span>
+                  <div>
+                    <strong>Professional Growth</strong>
+                    <p>Access alumni networks, workshops, and career resources.</p>
+                  </div>
+                </li>
+                <li>
+                  <span class="benefit-icon">🎉</span>
+                  <div>
+                    <strong>Unforgettable Events</strong>
+                    <p>Cultural celebrations, food festivals, and more.</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </FadeIn>
+
+          <FadeIn client:load delay={0.2}>
+            <div class="card info-card contact-card">
+              <h4>Contact Us</h4>
+              <p>Have questions? Reach out anytime.</p>
+              <div class="contact-links">
+                <a href={`mailto:${siteConfig.socials.email}`} class="contact-link">
+                  📧 {siteConfig.socials.email}
+                </a>
+                <a href={siteConfig.socials.instagram} target="_blank" rel="noopener" class="contact-link">
+                  📸 @utoledo_bsa
+                </a>
+                <a href={siteConfig.socials.facebook} target="_blank" rel="noopener" class="contact-link">
+                  📘 Facebook
+                </a>
+                <a href={siteConfig.socials.invonet} target="_blank" rel="noopener" class="contact-link">
+                  🎓 InvoNet
+                </a>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    padding: calc(var(--nav-height) + 4rem) 2rem 2rem;
+    text-align: center;
+    background: var(--off-white);
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .page-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gold-dark);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .page-hero h1 {
+    margin-bottom: 0.75rem;
+  }
+
+  .page-subtitle {
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .join-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .form-card {
+    padding: 2.5rem;
+  }
+
+  .form-card h3 {
+    margin-bottom: 0.4rem;
+  }
+
+  .form-subtitle {
+    font-size: 0.9rem !important;
+    margin-bottom: 1.75rem;
+  }
+
+  .join-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .form-group label {
+    font-size: 0.83rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: var(--off-white);
+    border: 1px solid var(--gray-300);
+    border-radius: 8px;
+    padding: 0.7rem 0.9rem;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.92rem;
+    transition: border-color var(--transition-fast);
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: var(--gray-400);
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(0, 62, 126, 0.08);
+  }
+
+  .form-group select {
+    cursor: pointer;
+  }
+
+  .form-submit {
+    width: 100%;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 2rem 0;
+  }
+
+  .form-success.show {
+    display: block;
+  }
+
+  .form-success .success-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(0, 62, 126, 0.08);
+    color: var(--blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 auto 1rem;
+  }
+
+  .join-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .info-card {
+    padding: 1.75rem;
+  }
+
+  .info-card h4 {
+    color: var(--blue);
+    font-size: 1.05rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .benefits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+  }
+
+  .benefits-list li {
+    display: flex;
+    gap: 0.85rem;
+    align-items: flex-start;
+  }
+
+  .benefit-icon {
+    font-size: 1.35rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .benefits-list strong {
+    display: block;
+    color: var(--text-primary);
+    font-size: 0.92rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .benefits-list p {
+    font-size: 0.83rem !important;
+    line-height: 1.5;
+  }
+
+  .contact-card p {
+    margin-bottom: 1rem;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    transition: color var(--transition-fast);
+  }
+
+  .contact-link:hover {
+    color: var(--blue);
+  }
+
+  @media (max-width: 768px) {
+    .join-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById("join-form") as HTMLFormElement;
+  const success = document.getElementById("form-success");
+
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    form.style.display = "none";
+    const subtitle = form.previousElementSibling;
+    if (subtitle) (subtitle as HTMLElement).style.display = "none";
+    const heading = subtitle?.previousElementSibling;
+    if (heading) (heading as HTMLElement).style.display = "none";
+    success?.classList.add("show");
+  });
+</script>
