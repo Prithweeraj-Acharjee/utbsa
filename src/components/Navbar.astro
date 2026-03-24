@@ -4,19 +4,20 @@ import { navLinks } from "../data/site";
 const currentPath = Astro.url.pathname;
 ---
 
-<nav class="navbar" id="navbar">
-  <div class="nav-inner container">
-    <a href="/" class="nav-logo">
-      <img src="/images/logo.jpg" alt="UT BSA Logo" class="nav-logo-img" />
-      <span class="logo-text">UT BSA</span>
+<nav class="bsa-navbar" id="navbar">
+  <div class="container bsa-nav-inner">
+    <a href="/" class="bsa-nav-logo">
+      <img src="/images/logo.jpg" alt="UT BSA Logo" class="bsa-nav-logo-img" />
+      <span class="bsa-logo-text">UT BSA</span>
     </a>
 
-    <ul class="nav-links" id="nav-links">
+    <!-- Desktop links -->
+    <ul class="bsa-nav-desktop">
       {navLinks.map((link) => (
         <li>
           <a
             href={link.href}
-            class:list={["nav-link", { active: currentPath === link.href }]}
+            class:list={["bsa-nav-link", { "bsa-nav-active": currentPath === link.href }]}
           >
             {link.label}
           </a>
@@ -24,16 +25,28 @@ const currentPath = Astro.url.pathname;
       ))}
     </ul>
 
-    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
-      <span></span>
-      <span></span>
-      <span></span>
+    <!-- Hamburger button -->
+    <button class="bsa-hamburger" id="nav-toggle" aria-label="Toggle menu">
+      <span class="bsa-hamburger-line"></span>
+      <span class="bsa-hamburger-line"></span>
+      <span class="bsa-hamburger-line"></span>
     </button>
   </div>
 </nav>
 
-<style>
-  .navbar {
+<!-- Mobile menu (completely separate from nav) -->
+<div class="bsa-mobile-menu" id="mobile-menu" style="display:none;">
+  <ul>
+    {navLinks.map((link) => (
+      <li>
+        <a href={link.href} class="bsa-mobile-link">{link.label}</a>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<style is:global>
+  .bsa-navbar {
     position: fixed;
     top: 0;
     left: 0;
@@ -49,120 +62,141 @@ const currentPath = Astro.url.pathname;
     transition: all 300ms ease;
   }
 
-  .navbar.scrolled {
+  .bsa-navbar.scrolled {
     background: rgba(255, 255, 255, 0.95);
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
   }
 
-  .nav-inner {
+  .bsa-nav-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
   }
 
-  .nav-logo {
+  .bsa-nav-logo {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    z-index: 10;
+    z-index: 1001;
+    text-decoration: none;
   }
 
-  .nav-logo-img {
+  .bsa-nav-logo-img {
     height: 44px;
     width: auto;
     border-radius: 6px;
   }
 
-  .logo-text {
+  .bsa-logo-text {
     font-size: 1.25rem;
     font-weight: 800;
     color: var(--blue);
     letter-spacing: 0.02em;
   }
 
-  .nav-links {
+  /* Desktop nav */
+  .bsa-nav-desktop {
     display: flex;
     align-items: center;
     gap: 0.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
 
-  @media (max-width: 768px) {
-    .nav-links {
-      display: none;
-    }
-  }
-
-  .nav-link {
+  .bsa-nav-link {
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
     font-weight: 500;
     color: var(--gray-600);
     border-radius: 8px;
-    transition: all var(--transition-fast);
+    transition: all 150ms ease;
+    text-decoration: none;
   }
 
-  .nav-link:hover {
+  .bsa-nav-link:hover {
     color: var(--blue);
     background: var(--gray-50);
   }
 
-  .nav-link.active {
-    color: var(--blue);
+  .bsa-nav-active {
+    color: var(--blue) !important;
     font-weight: 600;
     background: rgba(0, 62, 126, 0.06);
   }
 
-  .nav-toggle {
+  /* Hamburger */
+  .bsa-hamburger {
     display: none;
     flex-direction: column;
     gap: 5px;
-    padding: 4px;
-    z-index: 10;
+    padding: 8px;
+    z-index: 1001;
+    cursor: pointer;
+    border: none;
+    background: none;
   }
 
-  .nav-toggle span {
+  .bsa-hamburger-line {
     display: block;
     width: 22px;
     height: 2px;
-    background: var(--black);
+    background: #1A1A1A;
     border-radius: 2px;
     transition: all 300ms ease;
   }
 
+  /* Mobile menu - fullscreen overlay */
+  .bsa-mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    background: #FFFFFF;
+  }
+
+  .bsa-mobile-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 0.5rem;
+  }
+
+  .bsa-mobile-link {
+    display: block;
+    padding: 0.75rem 2rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1A1A1A;
+    text-decoration: none;
+    border-radius: 8px;
+  }
+
+  .bsa-mobile-link:hover {
+    color: var(--blue);
+  }
+
   @media (max-width: 768px) {
-    .nav-toggle {
-      display: flex;
+    .bsa-nav-desktop {
+      display: none !important;
     }
 
-    .nav-links.open {
-      display: flex;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 0.5rem;
-      background: white;
-      z-index: 999;
+    .bsa-hamburger {
+      display: flex !important;
     }
+  }
 
-    .nav-link {
-      font-size: 1.35rem;
-      padding: 0.75rem 1.5rem;
-    }
-
-    .nav-toggle.open span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-    .nav-toggle.open span:nth-child(2) {
-      opacity: 0;
-    }
-    .nav-toggle.open span:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
+  @media (min-width: 769px) {
+    .bsa-mobile-menu {
+      display: none !important;
     }
   }
 </style>
@@ -178,16 +212,19 @@ const currentPath = Astro.url.pathname;
   });
 
   const toggle = document.getElementById("nav-toggle");
-  const links = document.getElementById("nav-links");
+  const menu = document.getElementById("mobile-menu");
+
   toggle?.addEventListener("click", () => {
-    toggle.classList.toggle("open");
-    links?.classList.toggle("open");
+    if (menu) {
+      const isOpen = menu.style.display === "block";
+      menu.style.display = isOpen ? "none" : "block";
+    }
   });
 
-  links?.querySelectorAll("a").forEach((link) => {
+  // Close menu on link click
+  menu?.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
-      toggle?.classList.remove("open");
-      links?.classList.remove("open");
+      if (menu) menu.style.display = "none";
     });
   });
 </script>
