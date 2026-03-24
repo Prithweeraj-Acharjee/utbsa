@@ -1,0 +1,123 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import FadeIn from "../../components/react/FadeIn";
+import { pastEvents } from "../../data/site";
+
+export function getStaticPaths() {
+  return pastEvents.map((event) => ({
+    params: { slug: event.slug },
+    props: { event },
+  }));
+}
+
+const { event } = Astro.props;
+---
+
+<Layout title={event.title} description={event.description}>
+  <section class="page-hero">
+    <div class="container">
+      <FadeIn client:load>
+        <a href="/events" class="back-link">&larr; All Events</a>
+        <span class="event-category">{event.category}</span>
+        <h1>{event.title}</h1>
+        <p class="event-date">{event.date}</p>
+        <p class="page-subtitle">{event.description}</p>
+      </FadeIn>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="gallery-grid">
+        {event.photos.map((photo: string, i: number) => (
+          <FadeIn client:load delay={i * 0.05}>
+            <div class="gallery-item">
+              <img src={photo} alt={`${event.title} photo ${i + 1}`} loading="lazy" />
+            </div>
+          </FadeIn>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    padding: calc(var(--nav-height) + 3rem) 2rem 2rem;
+    background: var(--off-white);
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .back-link {
+    display: inline-block;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--blue);
+    margin-bottom: 1.5rem;
+    transition: opacity var(--transition-fast);
+  }
+
+  .back-link:hover {
+    opacity: 0.7;
+  }
+
+  .event-category {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.25rem 0.7rem;
+    border-radius: 50px;
+    color: var(--blue);
+    background: rgba(0, 62, 126, 0.08);
+    border: 1px solid rgba(0, 62, 126, 0.12);
+    margin-bottom: 1rem;
+  }
+
+  .page-hero h1 {
+    margin-bottom: 0.5rem;
+  }
+
+  .event-date {
+    font-size: 0.9rem !important;
+    font-weight: 600;
+    color: var(--gold-dark) !important;
+    margin-bottom: 1rem;
+  }
+
+  .page-subtitle {
+    max-width: 600px;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+    gap: 1rem;
+  }
+
+  .gallery-item {
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--gray-100);
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    transition: transform var(--transition-base);
+    cursor: pointer;
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.03);
+  }
+
+  @media (max-width: 480px) {
+    .gallery-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -65,12 +65,13 @@ import { upcomingEvents, pastEvents } from "../data/site";
       <div class="past-grid">
         {pastEvents.map((event, i) => (
           <FadeIn client:load delay={i * 0.1}>
-            <div class="card past-card">
+            <a href={`/events/${event.slug}`} class="card past-card">
               <div class="past-image">
                 <img src={event.image} alt={event.title} />
                 <div class="past-overlay">
                   <span class="event-category">{event.category}</span>
                 </div>
+                <div class="photo-count">{event.photos.length} photos</div>
               </div>
               <div class="past-info">
                 <div class="past-header">
@@ -79,7 +80,7 @@ import { upcomingEvents, pastEvents } from "../data/site";
                 </div>
                 <p>{event.description}</p>
               </div>
-            </div>
+            </a>
           </FadeIn>
         ))}
       </div>
@@ -243,6 +244,25 @@ import { upcomingEvents, pastEvents } from "../data/site";
   .past-info p {
     font-size: 0.88rem !important;
     line-height: 1.6;
+  }
+
+  .past-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .photo-count {
+    position: absolute;
+    bottom: 0.75rem;
+    right: 0.75rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.25rem 0.65rem;
+    border-radius: 50px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    backdrop-filter: blur(8px);
   }
 
   @media (max-width: 768px) {
