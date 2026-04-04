@@ -38,54 +38,63 @@ export const eboardMembers = [
     title: "President",
     major: "MS Industrial Engineering",
     image: "/images/eboard-saad.jpg",
+    role: "Leads the organization's vision and strategy. Oversees all operations, presides over meetings, and serves as the primary representative of BSA to the university and external partners.",
   },
   {
-    name: "Khokon Kanti Bhowmuk",
+    name: "Khokon Kanti Bhowmik",
     title: "Vice President Internal",
     major: "Ph.D. Experimental Therapeutics",
     image: "/images/eboard-khokon.jpg",
+    role: "Manages internal affairs including member engagement, meeting coordination, and committee oversight. Steps in as acting president when needed and ensures smooth day-to-day operations.",
   },
   {
     name: "Muhiul Islam Muhit",
     title: "Vice President External",
     major: "MS Mechanical Engineering",
     image: "/images/eboard-muhiul.jpg",
+    role: "Handles external relations, partnerships, and outreach. Builds connections with other student organizations, sponsors, and the broader Toledo community to expand BSA's presence.",
   },
   {
     name: "Saif Ahmed",
     title: "General Secretary",
     major: "Ph.D. Physics",
     image: "/images/eboard-saif.jpg",
+    role: "Maintains official records, meeting minutes, and organizational documentation. Manages internal communications and ensures all administrative processes run efficiently.",
   },
   {
     name: "Afifah Hossain Nilima",
     title: "Treasurer",
     major: "Accounting & Finance",
     image: "/images/eboard-afifah.jpg",
+    role: "Oversees BSA's financial operations including budgeting, expense tracking, fundraising, and financial reporting. Ensures transparent and responsible use of organizational funds.",
   },
   {
     name: "Prithweeraj Acharjee",
     title: "Event Coordinator",
     major: "Computer Science and Engineering",
     image: "/images/eboard-prithweeraj.jpg",
+    role: "Plans, organizes, and executes all BSA events from cultural celebrations to networking socials. Handles logistics, venue booking, and coordination to deliver memorable experiences.",
   },
   {
     name: "Lamisa Qumruzzaman",
     title: "Social Media Officer",
     major: "Neuroscience",
     image: "/images/eboard-lamisa.jpg",
+    role: "Manages BSA's digital presence across Instagram, Facebook, and other platforms. Creates engaging content, promotes events, and grows the community's online visibility.",
   },
   {
     name: "Md. Iqbal Hossain",
     title: "Executive Member",
     major: "MS Cyber Security",
     image: "/images/eboard-iqbal.jpg",
+    role: "Supports all executive operations and contributes to event planning, outreach, and member engagement. Brings technical expertise and fresh perspectives to the board.",
   },
   {
     name: "Tania Akter Jhuma",
     title: "Executive Member",
     major: "Ph.D. Biomedical Science",
     image: "/images/eboard-tania.jpg",
+    role: "Assists in organizational initiatives, event coordination, and community building. Advocates for member needs and helps drive BSA's mission forward.",
   },
 ];
 
@@ -102,7 +111,7 @@ export const eboardMembers2024 = [
     image: "/images/eboard-24-muhiul.png",
   },
   {
-    name: "Khokon Kanti Bhowmuk",
+    name: "Khokon Kanti Bhowmik",
     title: "General Secretary",
     image: "/images/eboard-24-khokon.png",
   },
@@ -155,15 +164,18 @@ export const alumniMembers = [
   },
 ];
 
-// Upcoming events (placeholder — replace with real data)
-export const upcomingEvents: {
-  title: string;
-  date: string;
-  time: string;
-  location: string;
-  category: string;
-  description: string;
-}[] = [];
+// Upcoming events
+export const upcomingEvents = [
+  {
+    title: "Eid Al-Fitr, Bengali New Year & Bangladesh Independence Day Celebration",
+    date: "Saturday, April 4th, 2026",
+    time: "6:00 PM — 11:00 PM",
+    location: "Student Union 2050, Ingman Room",
+    category: "Cultural",
+    description: "Join UT BSA for a grand celebration of Eid Al-Fitr, Bengali New Year (Pohela Boishakh), and Bangladesh Independence Day. An evening of culture, food, and community. Sponsored by Dr. Bhuiyan Monwar Alam & Family.",
+    image: "/images/upcoming-event.jpg",
+  },
+];
 
 // Past events with photos
 export const pastEvents = [
