@@ -101,7 +101,7 @@ export const eboardMembers = [
 // E-Board 2024-25
 export const eboardMembers2024 = [
   {
-    name: "Gorshed Al Mamun Dony",
+    name: "Earshed Al Mamun Dony",
     title: "President",
     image: "/images/eboard-24-gorshed.png",
   },
@@ -116,7 +116,7 @@ export const eboardMembers2024 = [
     image: "/images/eboard-24-khokon.png",
   },
   {
-    name: "Antardip Himol",
+    name: "Antardip Himel",
     title: "Treasurer",
     image: "/images/eboard-24-antardip.png",
   },
